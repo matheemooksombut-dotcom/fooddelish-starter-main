@@ -5,6 +5,11 @@ const app = express()
 const port = 8000
 
 
+
+
+
+// -----> เส้น API ยิงผ่าน Postman เข้า Database แล้ว 
+
 // ! เชื่อมต่อ Database
 let conn = null
 app.use(bodyparser.json())
@@ -45,46 +50,47 @@ app.get('/users',async(req,res)=>{
 
 //path Post User
 app.post('/user' ,  async(req , res)=>{
+    
+    try{
     let user = req.body
     const result = await conn.query('INSERT INTO user SET ?' , user)
-    
-    console.log('results' , result)
-
-
-
     // ! นำข้อมูลจาก database มาแสดงให้ user ในรูปแบบ json
     res.json({
         message: 'Inserted' , 
         data: result[0]
     })
-  
+
+    }catch(error){
+        console.error( 'errorMessage', error.message)
+        res.status(500).json({message: 'Something wrong',
+           
+        })
+
+    }
+    
 })
 
 
-
-
-
-//mock API--------------------------------
-
-
-
-
-
-
-
-// app.put('/user/:id',(req,res)=>{
-//     let id = req.params.id
-//     //ค้นหา user ผ่าน id 
-//     let selectedIndex = users.findIndex(user => {
-//         if(user.id == id){
-//             return true
-//         }else{
-//            return false
-//         }
-
-//     })
-//     res.send(selectedIndex + '')    
-// })
+app.get('/user/:id', async(req,res)=>{
+    try{let id = req.params.id
+    //ค้นหา user ผ่าน id 
+    const result = await conn.query('SELECT * FROM user WHERE id = ?' , id)
+    if(result[0].length >0){
+        res.json(result[0][0])
+    }else{
+        res.status(404).json({
+            message: 'NOT FOUND'
+        })
+    }
+    
+ }catch(error){
+   console.error( 'errorMessage', error.message)
+        res.status(500).json({message: 'Something wrong',
+           
+    })
+ }
+    
+})
 
 
 app.listen(port, async(req,res) => {
