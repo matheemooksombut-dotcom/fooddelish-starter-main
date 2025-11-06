@@ -765,3 +765,19 @@ p{
 }
 
 
+.contacted{
+    display: flex;
+    column-gap: 50px;
+    a{
+        color: #333333;
+        text-decoration: none;
+    }
+    a:hover{
+        color: red;
+    }
+    li{
+        list-style: none;
+    }
+}
+
+
