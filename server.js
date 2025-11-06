@@ -2,10 +2,11 @@ const express = require('express')
 const bodyparser = require('body-parser')
 const mysql = require('mysql2/promise')
 const app = express()
+const cors = require('cors');
 const port = 8000
 
 
-
+app.use(cors());
 
 
 // -----> เส้น API ยิงผ่าน Postman เข้า Database แล้ว 
