@@ -781,3 +781,18 @@ p{
 }
 
 
+
+.register-content-about {
+  background-image: url(../img/chicken-wing-bg-black.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 1000px; 
+  width: 100%;
+}
+
+
+.register-content{
+    padding: 100px;
+    color: white;
+}
