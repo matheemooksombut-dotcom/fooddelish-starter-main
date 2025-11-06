@@ -36,8 +36,8 @@ const submitdata = async () => {
   }
 
   // ✅ ตรวจสอบความยาวรหัสผ่าน (อย่างน้อย 8 ตัว)
-  if (userData.Password.length < 8) {
-    alert("⚠️ รหัสผ่านควรมีอย่างน้อย 8 ตัวอักษร");
+  if (userData.Password.length < 6) {
+    alert("⚠️ รหัสผ่านควรมีอย่างน้อย 6 ตัวอักษร");
     return;
   }
 
