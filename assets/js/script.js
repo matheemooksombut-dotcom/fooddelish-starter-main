@@ -17,6 +17,8 @@ const submitdata = async () => {
     ConfirmPassword: ConfirmDOM.value
   };
 
+
+  
   // ✅ ตรวจสอบว่ากรอกครบไหม
   if (
     !userData.Firstname ||
@@ -25,19 +27,19 @@ const submitdata = async () => {
     !userData.Password ||
     !userData.ConfirmPassword
   ) {
-    alert("⚠️ กรุณากรอกข้อมูลให้ครบทุกช่อง");
+    alertcontent('danger'); 
     return;
   }
 
   // ✅ ตรวจสอบรหัสผ่านตรงกันไหม
   if (userData.Password !== userData.ConfirmPassword) {
-    alert("❌ รหัสผ่านไม่ตรงกัน กรุณาลองใหม่อีกครั้ง");
+    alertcontent('wrongpassword');
     return;
   }
 
   // ✅ ตรวจสอบความยาวรหัสผ่าน (อย่างน้อย 8 ตัว)
   if (userData.Password.length < 6) {
-    alert("⚠️ รหัสผ่านควรมีอย่างน้อย 6 ตัวอักษร");
+    alertcontent('incasepassword')
     return;
   }
 
@@ -48,13 +50,24 @@ const submitdata = async () => {
     const response = await axios.post('http://localhost:8000/user', userData);
     console.log('Response:', response.data);
 
-    alert(`✅ ลงทะเบียนสำเร็จ!\nชื่อ: ${userData.Firstname} ${userData.Lastname}`);
+    alertcontent('correct');
 
     // ✅ เด้งกลับไปหน้าแรก
-    window.location.href = 'index.html';
+     setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 1000);
 
   } catch (error) {
     console.error('Error:', error);
     alert("❌ เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์");
   }
 };
+
+//!  alertbox
+function alertcontent(type) {
+    document.querySelectorAll('.alert-content').forEach(el => {
+      el.style.display = 'none'; 
+    });
+    document.querySelector(`.alert-content.${type}`).style.display='block';
+  }
+

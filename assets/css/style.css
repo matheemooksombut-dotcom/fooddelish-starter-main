@@ -30,6 +30,45 @@
 
 /* !header */
 
+/* !box Alert Content  */
+.alert-content {
+  display: none;
+  margin: 10px 0;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 0.3s ease;
+}
+
+.alert-content.correct {
+  background-color: #e6ffed;
+  color: #28a745;
+}
+.alert-content.danger {
+  background-color: #fff3cd;
+  color: #856404;
+}
+.alert-content.wrongpassword {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+.alert-content.incasepassword {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
 
 .btn-form:hover{
     background-color: red;
