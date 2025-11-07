@@ -52,9 +52,9 @@ const submitdata = async () => {
 
     alertcontent('correct');
 
-    // ✅ เด้งกลับไปหน้าแรก
+    // ✅ เด้งกลับไป USER
      setTimeout(() => {
-      window.location.href = 'index.html';
+      window.location.href = 'user.html';
     }, 1000);
 
   } catch (error) {
