@@ -59,8 +59,11 @@ app.post('/Register' ,  async(req , res)=>{
     const [existing] = await conn.query('SELECT * FROM user WHERE Username = ?',[Username])
     if(existing.length >0){
       // ! พบ User ซํ้า
-      alert("ชื่อนี้มีผู้ใช้งานในระบบแล้ว กรุณาลองใหม่อีกครั้ง 👤")
-      return;
+      return res.status(400).json({
+        message: 'Username  alredy exists'
+        
+      })
+      
     }
     const [result] = await conn.query('INSERT INTO user SET ?' , user)
     // ! นำข้อมูลจาก database มาแสดงให้ user ในรูปแบบ json
