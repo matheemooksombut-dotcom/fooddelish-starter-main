@@ -121,5 +121,5 @@ app.listen(port, async(req,res) => {
   console.log(`server running on port ${port}`)
 })
 
-const path = require('path');
-app.use(express.static(path.join(__dirname, 'public')));
+// const path = require('path');
+// app.use(express.static(path.join(__dirname, 'public')));

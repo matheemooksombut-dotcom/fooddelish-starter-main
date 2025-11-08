@@ -43,11 +43,13 @@ const submitdata = async () => {
     return;
   }
 
+  
+
   // ✅ ผ่านทุกเงื่อนไข → ส่งข้อมูลไป backend
   try {
     console.log('Submit:', userData);
 
-    const response = await axios.post('/Register', userData);
+    const response = await axios.post('http://localhost:8000/Register', userData);
     console.log('Response:', response.data);
 
     alertcontent('correct');
@@ -61,6 +63,9 @@ const submitdata = async () => {
     console.error('Error:', error);
     alert("❌ เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์");
   }
+
+
+  
 };
 
 //!  alertbox
