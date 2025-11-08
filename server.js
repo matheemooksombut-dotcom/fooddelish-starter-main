@@ -72,6 +72,23 @@ app.post('/user' ,  async(req , res)=>{
 })
 
 
+// 🔵 LOGIN
+app.post('/login', async (req, res) => {
+  const { Username, Password } = req.body;
+
+  try {
+    const [rows] = await conn.query('SELECT * FROM user WHERE Username = ? AND Password = ?', [Username, Password]);
+    if (rows.length > 0) {
+      res.json({ success: true, message: 'Login success', user: rows[0] });
+    } else {
+      res.json({ success: false, message: 'Invalid username or password' });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, error });
+  }
+});
+
+
 app.get('/user/:id', async(req,res)=>{
     try{let id = req.params.id
     //ค้นหา user ผ่าน id 

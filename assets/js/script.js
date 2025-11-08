@@ -71,3 +71,41 @@ function alertcontent(type) {
     document.querySelector(`.alert-content.${type}`).style.display='block';
   }
 
+
+  // ! Login Section 
+
+  const Login = async() =>{
+    let UsernameDOM = document.querySelector('input[name=Username]');
+    let PasswordDOM = document.querySelector('input[name=Password]');
+
+    let loginData =  {
+      Username: UsernameDOM.value.trim(), 
+      Password: PasswordDOM.value.trim()
+    }
+
+    if(!loginData.Username||!loginData.Password){
+       alertcontent('danger');
+      return;
+    }
+
+    try{
+      // check ข้อมูลจากหลังบ้าน 
+      const response = await axios.post('http://localhost:8000/login'  , loginData) 
+
+      if(response.data.sucess){
+        alertcontent('correct');
+        setTimeout(() => {
+        window.location.href = 'user.html';
+      }, 1000)
+
+      }else{
+        alertcontent('wrongpassword')
+      }
+
+
+    }catch(error){
+      console.error('Error : ' ,error) 
+      alert("❌ เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์");
+    }
+  }
+  
