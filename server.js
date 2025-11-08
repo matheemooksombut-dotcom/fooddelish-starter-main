@@ -50,7 +50,7 @@ app.get('/users',async(req,res)=>{
 //!   นำข้อมูลจากฝั่ง User เก็บลง Database
 
 //path Post User
-app.post('/user' ,  async(req , res)=>{
+app.post('/Register' ,  async(req , res)=>{
     
     try{
     let user = req.body
@@ -77,16 +77,21 @@ app.post('/login', async (req, res) => {
   const { Username, Password } = req.body;
 
   try {
-    const [rows] = await conn.query('SELECT * FROM user WHERE Username = ? AND Password = ?', [Username, Password]);
+    const [rows] = await conn.query(
+      'SELECT * FROM user WHERE Username = ? AND Password = ?',
+      [Username, Password]
+    );
+
     if (rows.length > 0) {
       res.json({ success: true, message: 'Login success', user: rows[0] });
     } else {
       res.json({ success: false, message: 'Invalid username or password' });
     }
-  } catch (error) {
-    res.status(500).json({ success: false, error });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Database error', error: err });
   }
 });
+
 
 
 app.get('/user/:id', async(req,res)=>{
@@ -115,3 +120,6 @@ app.listen(port, async(req,res) => {
     await initDatabase()
   console.log(`server running on port ${port}`)
 })
+
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));

@@ -47,14 +47,14 @@ const submitdata = async () => {
   try {
     console.log('Submit:', userData);
 
-    const response = await axios.post('http://localhost:8000/user', userData);
+    const response = await axios.post('/Register', userData);
     console.log('Response:', response.data);
 
     alertcontent('correct');
 
     // ✅ เด้งกลับไป USER
      setTimeout(() => {
-      window.location.href = 'user.html';
+      window.location.href = '../login.html';
     }, 1000);
 
   } catch (error) {
@@ -74,38 +74,43 @@ function alertcontent(type) {
 
   // ! Login Section 
 
-  const Login = async() =>{
-    let UsernameDOM = document.querySelector('input[name=Username]');
-    let PasswordDOM = document.querySelector('input[name=Password]');
+  // ========================= LOGIN =========================
+const Login = async () => {
+  let UsernameDOM = document.querySelector('input[name=Username]');
+  let PasswordDOM = document.querySelector('input[name=Password]');
 
-    let loginData =  {
-      Username: UsernameDOM.value.trim(), 
-      Password: PasswordDOM.value.trim()
-    }
+  let loginData = {
+    Username: UsernameDOM.value.trim(),
+    Password: PasswordDOM.value.trim()
+  };
 
-    if(!loginData.Username||!loginData.Password){
-       alertcontent('danger');
-      return;
-    }
-
-    try{
-      // check ข้อมูลจากหลังบ้าน 
-      const response = await axios.post('http://localhost:8000/login'  , loginData) 
-
-      if(response.data.sucess){
-        alertcontent('correct');
-        setTimeout(() => {
-        window.location.href = 'user.html';
-      }, 1000)
-
-      }else{
-        alertcontent('wrongpassword')
-      }
-
-
-    }catch(error){
-      console.error('Error : ' ,error) 
-      alert("❌ เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์");
-    }
+  // ✅ ตรวจสอบว่ากรอกครบไหม
+  if (!loginData.Username || !loginData.Password) {
+    alertcontent('danger');
+    return;
   }
+
+  try {
+    // ✅ ยิงไปเช็คกับ backend
+    const response = await axios.post('http://localhost:8000/login', loginData);
+    console.log('Response:', response.data);
+
+    if (response.data.success) {
+      alertcontent('correct');
+
+      // เก็บข้อมูลผู้ใช้ไว้ใน localStorage (ไว้แสดงในหน้า user)
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+
+      // ✅ เด้งไปหน้า user.html
+      setTimeout(() => {
+        window.location.href = 'user/user.index.html';
+      }, 1000);
+    } else {
+      alertcontent('wrongpassword');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('❌ เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์');
+  }
+};
   
