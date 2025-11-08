@@ -54,11 +54,19 @@ app.post('/Register' ,  async(req , res)=>{
     
     try{
     let user = req.body
-    const result = await conn.query('INSERT INTO user SET ?' , user)
+    const {Username} = user ; 
+    // Username ซํ้าๆ
+    const [existing] = await conn.query('SELECT * FROM user WHERE Username = ?',[Username])
+    if(existing.length >0){
+      // ! พบ User ซํ้า
+      alert("ชื่อนี้มีผู้ใช้งานในระบบแล้ว กรุณาลองใหม่อีกครั้ง 👤")
+      return;
+    }
+    const [result] = await conn.query('INSERT INTO user SET ?' , user)
     // ! นำข้อมูลจาก database มาแสดงให้ user ในรูปแบบ json
     res.json({
         message: 'Inserted' , 
-        data: result[0]
+        data: result
     })
 
     }catch(error){
