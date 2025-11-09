@@ -7,6 +7,36 @@
     <title>Document</title>
 </head>
 <body>
+ <header class="product-bg">
+        <nav>
+            <div class="container">
+                <div class="nav-warapper">
+                    <div class="logo">
+                        <a href="user.index.html"><img src="../assets/img/logo.png" alt=""></a>
+                    </div>
+
+                    <ul class="menu">
+                        <li><a href="../user/user.index.html">Home</a></li>
+                        <li><a href="../user/user.product.html">Product</a></li>
+                        <li><a href="#">Cart</a></li>
+                        <li><a href="../user/user.about.html">About</a></li>
+                        <li><a href="#">Contract</a></li>
+                        <div></div><div class="#"><li><a style="cursor: auto; color: #63E6BE;" href="#"<i class="fa-solid fa-user fa-flip-horizontal fa-lg" style="color: #63E6BE;"></i></a></li></div>
+                        <a href="../user/user.index.html"><i class="fa-solid fa-right-from-bracket fa-bounce fa-lg" style="color: #d80e0e;"></i></a>
+                       
+                    </ul>
+
+                    <div class="hamberger-icon">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+
     <div class="container">
         <div class="menu-header">
             <div class="menu-data">
@@ -17,7 +47,7 @@
                 <div class="content-menu">
                     
                         <h3>Chicken PokPoK</h3>
-                        <form action="">
+                        <form id="menuForm" action="">
                                 <input type="number" readonly style="border-style: none; outline-style: none; text-align: center; padding-left: 20px; font-family: 'Courier New', Courier, monospace; font-size: larger;"  name="Quantity" value="1" min="1" max="99" >
                                 <br>
                                 <input type="number" readonly style="border-style: none; outline-style: none; text-align: center; padding-left: 20px; font-family: 'Courier New', Courier, monospace; font-size: larger;"  name="Price" value="50" min="50"  ><span>$</span>
@@ -26,8 +56,8 @@
                                 <br>
                                 <div>
                                     
-                                    <button class="btn-qty minus">−</button>
-                                    <button class="btn-qty plus">+</button>
+                                    <button type="button" class="btn-qty minus">−</button>
+                                    <button type="button" class="btn-qty plus">+</button>
 
                                 </div>
                             
@@ -37,4 +67,6 @@
             </div>
         </div>
 </body>
+
+<script src="../assets/js/script.js"></script>
 </html>
