@@ -60,7 +60,7 @@ app.post('/Register' ,  async(req , res)=>{
     if(existing.length >0){
       // ! พบ User ซํ้า
       return res.status(400).json({
-        message: 'Username  alredy exists'
+        message: 'Username already exists'
         
       })
       

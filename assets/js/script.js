@@ -61,8 +61,20 @@ const submitdata = async () => {
 
   } catch (error) {
     console.error('Error:', error);
+    if(error.response && error.response.status === 400){
+    const message = error.response.data.message ; 
+      // !  ถ้าชื่อผู้ใช้งานซํ้า
+    if(message.includes('Username')){
+      alertcontent('duplicate')
+    }else{
+      alert("❌" + message)
+    }
+  }else{
     alert("❌ เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์");
   }
+    
+  }
+  
 
 
   
