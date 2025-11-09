@@ -80,33 +80,7 @@ const submitdata = async () => {
   
 };
 
-// ! + / - 
- const form = document.getElementById('menuForm');
-  const qtyInput = form.querySelector('input[name="Quantity"]');
-  const priceInput = form.querySelector('input[name="Price"]');
 
-  const basePrice = 50; // ราคาต่อชิ้น
-
-  // ปุ่ม +
-  form.querySelector('.btn-qty.plus').addEventListener('click', () => {
-     event.preventDefault(); // ป้องกันการรีเฟรช
-    let qty = parseInt(qtyInput.value);
-    if (qty < 99) {
-      qty++;
-      qtyInput.value = qty;
-      priceInput.value = qty * basePrice; // คำนวณราคาใหม่
-    }
-  });
-
-  // ปุ่ม -
-  form.querySelector('.btn-qty.minus').addEventListener('click', () => {
-    let qty = parseInt(qtyInput.value);
-    if (qty > 1) {
-      qty--;
-      qtyInput.value = qty;
-      priceInput.value = qty * basePrice; // คำนวณราคาใหม่
-    }
-  });
 
 
 //!  alertbox
@@ -159,4 +133,32 @@ const Login = async () => {
     alert('❌ เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์');
   }
 };
+
+// ! + / - 
+ const form = document.getElementById('menuForm');
+  const qtyInput = form.querySelector('input[name="Quantity"]');
+  const priceInput = form.querySelector('input[name="Price"]');
+
+  const basePrice = 50; // ราคาต่อชิ้น
+
+  // ปุ่ม +
+  form.querySelector('.btn-qty.plus').addEventListener('click', () => {
+     event.preventDefault(); // ป้องกันการรีเฟรช
+    let qty = parseInt(qtyInput.value);
+    if (qty < 99) {
+      qty++;
+      qtyInput.value = qty;
+      priceInput.value = qty * basePrice; // คำนวณราคาใหม่
+    }
+  });
+
+  // ปุ่ม -
+  form.querySelector('.btn-qty.minus').addEventListener('click', () => {
+    let qty = parseInt(qtyInput.value);
+    if (qty > 1) {
+      qty--;
+      qtyInput.value = qty;
+      priceInput.value = qty * basePrice; // คำนวณราคาใหม่
+    }
+  });
   
