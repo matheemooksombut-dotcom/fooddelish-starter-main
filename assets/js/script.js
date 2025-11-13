@@ -177,6 +177,9 @@ const menuForm = async () => {
   }
 
 
+   return { quantityValueDom, priceValueDom , ProdcutnameDom , imgproductDom};
+
+
 
   // // ✅ ผ่านทุกเงื่อนไข → ส่งข้อมูลไป backend
   // try {
