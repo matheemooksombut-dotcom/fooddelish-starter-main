@@ -162,3 +162,52 @@ const Login = async () => {
     }
   });
   
+
+const menuForm = async () => {
+  const ProdcutnameDom = document.querySelector('h3[name="Productname"]')
+  const quantityValueDom = document.querySelector('input[name="Quantity"]').value;
+  const priceValueDom = document.querySelector('input[name="Price"]').value;
+  return { quantityValueDom, priceValueDom , ProdcutnameDom};
+  let prodcut = {
+    Productname: ProdcutnameDom.value,
+    Quanlity: quantityValueDom.value,
+    PriceProduct: priceValueDom.value
+
+  }
+
+
+
+  // ✅ ผ่านทุกเงื่อนไข → ส่งข้อมูลไป backend
+  try {
+    console.log('Submit:', userData);
+
+    const response = await axios.post('http://localhost:8000/Register', userData);
+    console.log('Response:', response.data);
+
+    alertcontent('correct');
+
+    // ✅ เด้งกลับไป USER
+     setTimeout(() => {
+      window.location.href = '../login.html';
+    }, 1000);
+
+  } catch (error) {
+    console.error('Error:', error);
+    if(error.response && error.response.status === 400){
+    const message = error.response.data.message ; 
+      // !  ถ้าชื่อผู้ใช้งานซํ้า
+    if(message.includes('Username')){
+      alertcontent('duplicate')
+    }else{
+      alert("❌" + message)
+    }
+  }else{
+    alert("❌ เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์");
+  }
+    
+  }
+  
+
+};
+
+
