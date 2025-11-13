@@ -179,7 +179,27 @@ const menuForm = async () => {
 
   console.log(product);
   return product;
+
+  
 };
+document.querySelector('#menuForm').addEventListener('submit', (e) => {
+  e.preventDefault();
 
+  // ดึงข้อมูลสินค้า
+  const img = document.querySelector('img[name="imgproduct"]').src;
+  const name = document.querySelector('h3[name="Productname"]').textContent;
+  const qty = document.querySelector('input[name="Quantity"]').value;
+  const price = document.querySelector('input[name="Price"]').value;
 
+  const product = { img, name, qty, price };
 
+  // อ่าน cart เดิมใน localStorage
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.push(product);
+
+  // บันทึกกลับไป
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  alert('เพิ่มสินค้าลงตะกร้าเรียบร้อย!');
+  window.location.href = 'cart.html'; // ไปหน้า cart
+});
