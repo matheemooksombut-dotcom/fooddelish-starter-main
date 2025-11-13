@@ -1,0 +1,50 @@
+<h1>🛒 ตะกร้าสินค้า</h1>
+<div class="cart-container"></div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const cartContainer = document.querySelector('.cart-container');
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  if (cart.length === 0) {
+    cartContainer.innerHTML = '<p>ยังไม่มีสินค้าในตะกร้า</p>';
+    return;
+  }
+
+  cart.forEach((item, index) => {
+    const div = document.createElement('div');
+    div.classList.add('cart-item');
+    div.innerHTML = `
+      <img src="${item.img}" alt="${item.name}" width="100">
+      <h3>${item.name}</h3>
+      <p>จำนวน: ${item.qty}</p>
+      <p>ราคา: ${item.price} $</p>
+      <button onclick="removeItem(${index})">ลบ</button>
+    `;
+    cartContainer.appendChild(div);
+  });
+});
+
+function removeItem(index) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  location.reload();
+}
+</script>
+
+<style>
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.cart-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+}
+</style>
