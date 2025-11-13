@@ -164,24 +164,22 @@ const Login = async () => {
   
 
 const menuForm = async () => {
-  const imgproductDom = document.querySelector('img[name="imgproduct"]')
-  const ProdcutnameDom = document.querySelector('h3[name="Productname"]').value
-  const quantityValueDom = document.querySelector('input[name="Quantity"]').value;
-  const priceValueDom = document.querySelector('input[name="Price"]').value;
-  
-  let prodcut = {
-    Productname: ProdcutnameDom.value,
-    Quanlity: quantityValueDom.value,
-    PriceProduct: priceValueDom.value
+  const imgproductDom = document.querySelector('img[name="imgproduct"]');
+  const ProductnameDom = document.querySelector('h3[name="Productname"]');
+  const quantityValueDom = document.querySelector('input[name="Quantity"]');
+  const priceValueDom = document.querySelector('input[name="Price"]');
 
-  }
+  // ดึงค่าจริงออกจาก DOM
+  const product = {
+    Productname: ProductnameDom.textContent, // ใช้ textContent แทน value
+    Quantity: quantityValueDom.value,
+    PriceProduct: priceValueDom.value,
+    ImgSrc: imgproductDom.src // ดึง URL รูป
+  };
 
-
-   return { quantityValueDom, priceValueDom , ProdcutnameDom , imgproductDom};
-
-
-
-
+  console.log(product);
+  return product;
 };
+
 
 
